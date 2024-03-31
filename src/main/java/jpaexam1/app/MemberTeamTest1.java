@@ -65,3 +65,6 @@ public class MemberTeamTest1 {
         factory.close();
 	}
 }
+/**
+ * Team 생성 ,  > Locker, id자동생성,  > Member 회원8명 , 아기공용둘리팀, 겨울왕국팀, 짱구팀
+ */

@@ -17,7 +17,7 @@ public class EntityTest5 {
 	private String username;
 	// 연관관계 매핑
 	@ManyToOne
-	private Team a;
+	private Team a; //a_TEAM_ID
 	
 	public EntityTest5() {
 	}
