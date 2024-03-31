@@ -13,9 +13,8 @@ import java.util.Scanner;
 public class EntityTestApp8 {
 
 	public static void main(String[] args) {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("entitytest");
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("entities");
         EntityManager em = factory.createEntityManager();
-        //em.getTransaction().begin();
         TypedQuery<Imsi> q = em.createQuery("select t from Imsi t", Imsi.class);
         List<Imsi> list = q.getResultList();
         for (Imsi i : list)

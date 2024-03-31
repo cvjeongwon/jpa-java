@@ -7,7 +7,7 @@ import jpaexam1.entity.Imsi;
 
 public class EntityTestApp3 {
     public static void main(String[] args) {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("entitytest");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("entities");
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
         Imsi i1 = new Imsi();

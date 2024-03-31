@@ -9,7 +9,7 @@ import java.util.List;
 
 public class EntityTestApp6 {
 	public static void main(String[] args) {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("entitytest");
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("entities");
         EntityManager em = factory.createEntityManager();
         Imsi entity;
         em.getTransaction().begin();

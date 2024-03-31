@@ -8,7 +8,7 @@ import java.util.List;
 
 public class EntityTestApp5 {
 	public static void main(String[] args) {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("entitytest");
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("entities");
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
         EntityTest et = em.find(EntityTest.class, 3);

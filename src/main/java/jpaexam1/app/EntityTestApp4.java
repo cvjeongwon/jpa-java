@@ -8,7 +8,7 @@ import java.util.List;
 
 public class EntityTestApp4 {
 	public static void main(String[] args) {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("entitytest");
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("entities");
         EntityManager em = factory.createEntityManager();
         em.getTransaction().begin();
         Imsi i1 = new Imsi();
@@ -31,3 +31,8 @@ public class EntityTestApp4 {
         factory.close();
 	}
 }
+/**
+ * jpql
+ * TypedQuery<Imsi> q = em.createQuery("select t from Imsi t", Imsi.class);
+ * flus()는 jpql, commit(),  이 일어난다.
+ */
