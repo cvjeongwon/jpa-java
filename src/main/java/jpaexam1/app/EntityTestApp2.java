@@ -22,7 +22,7 @@ public class EntityTestApp2 {
         System.out.println("i1 영속객체로 만듬");
        	em.persist(i2);
         System.out.println("i2 영속객체로 만듬");
-        System.out.println("===== 커밋 =====");
+        System.out.println("===== 커밋 ====="); // commit() 이후 insert 명령이 수행 된다.
         em.getTransaction().commit();
         em.close();
         factory.close();
