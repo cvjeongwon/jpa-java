@@ -17,6 +17,7 @@
 		<class>jpaexam1.entity.Team</class>
 		<class>jpaexam1.entity.Locker</class>
 		<class>jpaexam1.entity.MyMyTest</class>
+		<class>jpaexam1.entity.Imsi</class>
 		<properties>
 			<property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
 			<property name="jakarta.persistence.jdbc.user" value="jdbctest" />

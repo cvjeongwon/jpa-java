@@ -1,51 +1,33 @@
 package jpaexam1.app;
 
+import jakarta.persistence.*;
 import jpaexam1.entity.EntityTest;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.TypedQuery;
-import java.time.LocalDateTime;
+import jpaexam1.entity.Imsi;
+
 import java.util.List;
-import java.util.Scanner;
 
 public class EntityTestApp4 {
 	public static void main(String[] args) {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("entities");
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("entitytest");
         EntityManager em = factory.createEntityManager();
-        EntityTest et;
         em.getTransaction().begin();
-        
-        for(int i=10; i < 15; i++) {
-        	et = new EntityTest();
-        	et.setName("도우너"+i);
-        	et.setAge(+i);
-        	et.setBirthday(LocalDateTime.now());
-        	em.persist(et);
-        }
-        
-        Scanner scan = new Scanner(System.in);
-        System.out.print("엔터키.....");
-        scan.nextLine();  
-        System.out.println("---------------------------");
-    	System.out.println("엔티티 삭제");
-    	EntityTest finalData = em.find(EntityTest.class, 5);
-    	em.remove(finalData);
-    	System.out.print("엔터키.....");
-        System.out.println("finalData = " + finalData);
-        scan.nextLine();  
-        TypedQuery<EntityTest> q = em.createQuery("select t from EntityTest t", EntityTest.class);
-    	List<EntityTest> list = q.getResultList();
-    	list.stream().forEach(System.out::println);  
-    	System.out.print("엔터키.....");
-        System.out.println("list = " + list);
-        scan.nextLine();     	
-        em.getTransaction().commit();
-        q = em.createQuery("select t from EntityTest t", EntityTest.class);
-    	list = q.getResultList();
+        Imsi i1 = new Imsi();
+        i1.setStnum(5);
+        i1.setStname("유니코5");
+        System.out.println("i1 생성");
+        Imsi i2 = new Imsi();
+        i2.setStnum(6);
+        i2.setStname("유니코6");
+        System.out.println("i2 생성");
+        em.persist(i1);
+        System.out.println("i1 영속객체로 만듬");
+        em.persist(i2);
+        System.out.println("i2 영속객체로 만듬");
+        TypedQuery<Imsi> q = em.createQuery("select t from Imsi t", Imsi.class);
+    	List<Imsi> list = q.getResultList();
     	list.stream().forEach(System.out::println);
+        em.getTransaction().rollback();
         em.close();       
         factory.close();
-        scan.close();
 	}
 }

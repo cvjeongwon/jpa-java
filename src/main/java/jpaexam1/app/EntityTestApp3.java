@@ -1,58 +1,32 @@
 package jpaexam1.app;
 
-import jpaexam1.entity.EntityTest;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import jakarta.persistence.TypedQuery;
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Scanner;
+import jpaexam1.entity.Imsi;
 
 public class EntityTestApp3 {
-	public static void main(String[] args) {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("entities");
+    public static void main(String[] args) {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("entitytest");
         EntityManager em = factory.createEntityManager();
-        EntityTest et;
         em.getTransaction().begin();
-        
-        for(int i=1; i < 5; i++) {
-        	et = new EntityTest();
-        	et.setName("도우너"+i);
-        	et.setAge(i);
-        	et.setBirthday(LocalDateTime.now());
-        	em.persist(et);
-        }
-        System.out.println("et = " + em);
-
-        Scanner scan = new Scanner(System.in);
-        System.out.print("엔터키> 1...em.persist(et)..");
-        scan.nextLine();  
-        TypedQuery<EntityTest> q = em.createQuery("select t from EntityTest t", EntityTest.class);
-    	List<EntityTest> list = q.getResultList();
-    	list.stream().forEach(System.out::println);
-    	
-    	for(int i=10; i < 15; i++) {
-        	et = new EntityTest();
-        	et.setName("또치"+i);
-        	et.setAge(i);
-        	et.setBirthday(LocalDateTime.now());
-        	em.persist(et);
-        }
-        System.out.println("em = " + em);
-    	System.out.print("엔터키 >2..select...");
-        scan.nextLine();
-        em.flush();  // db와 동기화
-        System.out.println("em = " + em);
-        q = em.createQuery("select t from EntityTest t", EntityTest.class);
-        list = q.getResultList();
-        list.stream().forEach(System.out::println);
-        
-        System.out.print("엔터키 > 3...commit()..");
-        scan.nextLine();  
-        em.getTransaction().commit();// 디비 적용 rollback();
-        em.close();       
+        Imsi i1 = new Imsi();
+        i1.setStnum(3);
+        i1.setStname("유니코3");
+        System.out.println("i1 생성");
+        Imsi i2 = new Imsi();
+        i2.setStnum(4);
+        i2.setStname("유니코4");
+        System.out.println("i2 생성");
+        em.persist(i1);
+        System.out.println("i1 영속객체로 만듬");
+        em.flush();
+        em.persist(i2);
+        System.out.println("i2 영속객체로 만듬");
+        em.flush();
+        System.out.println("===== 커밋 =====");
+        em.getTransaction().commit();
+        em.close();
         factory.close();
-        scan.close();
-	}
+    }
 }
